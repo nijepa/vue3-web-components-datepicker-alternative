@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>Vue Web Components!</h1>
+      <custom-datepicker id="deliveryTime"></custom-datepicker>
+      <input id="text">
+    </div>
+    <script type="module" src="/main.js"></script>
+    <script>
+      const datepicker = document.querySelector('custom-datepicker');
+      function setAttributes(el, attrs) {
+        for(var key in attrs) {
+          el.setAttribute(key, attrs[key]);
+        }
+      }
+      // const n = 2; //number of days to add.
+      // const today = new Date(); //Today's Date
+      // const requiredDate = new Date(today.getFullYear(),today.getMonth(),today.getDate() + n)
+      datepicker.setAttribute("propdate", '26.11.2022');
+      //datepicker.setAttribute("id", 'deliveryTime');
+      //datepicker.setAttribute("value", null);
+      const sel = document.querySelector('#deliveryTime')
+      const dateSelected = (e) => {
+        console.log(7, e.detail.val)
+        datepicker.setAttribute('value', e.detail.val)
+        const res = document.querySelector('#text')
+        res.value = datepicker.value
+        console.log(5, datepicker.value)
+      }
+      window.addEventListener('selected', dateSelected);
+    </script>
+  </body>
+</html>
